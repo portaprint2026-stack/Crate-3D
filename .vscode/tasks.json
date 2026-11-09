@@ -1,0 +1,28 @@
+{
+	"version": "2.0.0",
+	"tasks": [
+		{
+			"label": "Build Impulso React app",
+			"type": "shell",
+			"command": "cmd.exe",
+			"args": [
+				"/c",
+				"set PATH=%LOCALAPPDATA%\\Programs\\nodejs;%PATH% && npm.cmd run build"
+			],
+			"isBackground": false,
+			"problemMatcher": [],
+			"group": "build"
+		},
+		{
+			"label": "Start Impulso React app",
+			"type": "shell",
+			"command": "cmd.exe",
+			"args": [
+				"/c",
+				"set PATH=%LOCALAPPDATA%\\Programs\\nodejs;%PATH% && npm.cmd run dev -- --host 127.0.0.1"
+			],
+			"isBackground": true,
+			"problemMatcher": []
+		}
+	]
+}
