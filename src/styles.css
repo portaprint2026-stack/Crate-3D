@@ -291,34 +291,34 @@ svg { width: 20px; height: 20px; }
 }
 
 body { font-size: 16px; }
-.nav-links a { font-size: 13px; }
+.nav-links a { font-size: 14px; }
 .nav-cta, .button { min-height: 48px; padding-inline: 20px; font-size: 12px; }
 .brand-wordmark { font-size: 17px; }
 .hero-kicker { font-size: 11px; }
-.hero h1 { font-size: clamp(72px, 9.2vw, 122px); }
-.hero-description { max-width: 485px; font-size: 16px; line-height: 1.8; }
+.hero h1 { font-size: clamp(74px, 9.4vw, 126px); }
+.hero-description { max-width: 485px; font-size: 17px; line-height: 1.8; }
 .hero-note { font-size: 12px; }
 .hero-caption { font-size: 10px; }
 .hero-sticker { font-size: 9px; }
 .eyebrow { font-size: 10px; }
 .about-serial { font-size: 10px; }
-.about-copy h2 { font-size: clamp(44px, 5.4vw, 70px); }
-.about-bottom > p { font-size: 15px; }
+.about-copy h2 { font-size: clamp(46px, 5.5vw, 72px); }
+.about-bottom > p { font-size: 16px; }
 .text-arrow { font-size: 12px; }
-.section-heading h2 { font-size: clamp(44px, 5vw, 64px); }
-.section-description { font-size: 15px; }
+.section-heading h2 { font-size: clamp(46px, 5.1vw, 66px); }
+.section-description { font-size: 16px; }
 .section-code { font-size: 10px; }
 .category-card { min-height: 230px; padding: 22px; }
 .category-number { font-size: 10px; }
 .category-card h3 { font-size: 17px; }
-.category-card p { font-size: 13px; }
+.category-card p { font-size: 14px; }
 .category-link { font-size: 10px; }
 .product-index, .product-copy > span, .gallery-note { font-size: 10px; }
 .product-copy h3 { font-size: 15px; }
 .product-copy > a { font-size: 11px; }
 .benefit-number, .form-heading, .footer-label { font-size: 10px; }
 .benefit-item h3 { font-size: 16px; }
-.benefit-item p { font-size: 13px; }
+.benefit-item p { font-size: 14px; }
 .contact-copy h2 { font-size: clamp(48px, 5.5vw, 72px); }
 .contact-copy > p:not(.eyebrow) { font-size: 14px; }
 .contact-channel-note { font-size: 11px; }
@@ -334,23 +334,23 @@ body { font-size: 16px; }
 }
 
 @media (max-width: 640px) {
-  .nav-links a { font-size: 15px; }
+  .nav-links a { font-size: 16px; }
   .nav-cta, .button { min-height: 48px; font-size: 13px; }
-  .hero h1 { font-size: clamp(62px, 15vw, 88px); }
+  .hero h1 { font-size: clamp(64px, 15.5vw, 92px); }
   .hero-kicker { font-size: 9px; }
   .hero-description { font-size: 14px; }
   .hero-note { font-size: 11px; }
   .hero-caption { font-size: 8px; }
   .about-label .eyebrow { font-size: 9px; }
   .about-serial { font-size: 8px; }
-  .about-copy h2, .section-heading h2 { font-size: clamp(39px, 9.5vw, 53px); }
-  .about-bottom > p { font-size: 14px; }
+  .about-copy h2, .section-heading h2 { font-size: clamp(41px, 9.7vw, 55px); }
+  .about-bottom > p { font-size: 15px; }
   .text-arrow { font-size: 12px; }
-  .section-description { font-size: 14px; }
+  .section-description { font-size: 15px; }
   .section-code { font-size: 9px; }
   .category-card { min-height: 195px; padding: 18px; }
   .category-card h3 { font-size: 16px; }
-  .category-card p { font-size: 13px; }
+  .category-card p { font-size: 14px; }
   .category-link { font-size: 10px; }
   .product-index, .product-copy > span { font-size: 9px; }
   .product-copy h3 { min-height: 42px; font-size: 14px; }
@@ -358,7 +358,7 @@ body { font-size: 16px; }
   .gallery-note { font-size: 9px; }
   .benefit-item { min-height: 172px; }
   .benefit-item h3 { font-size: 15px; }
-  .benefit-item p { font-size: 13px; }
+  .benefit-item p { font-size: 14px; }
   .contact-copy h2 { font-size: 58px; }
   .contact-copy > p:not(.eyebrow) { font-size: 13px; }
   .contact-channel-note { font-size: 10px; }

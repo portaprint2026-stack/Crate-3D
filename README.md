@@ -1,4 +1,4 @@
-# Crate-3D
+# PortaPrint
 
 Tienda creativa adaptable de objetos útiles, decorativos y personalizados para el hogar y la vida cotidiana. Construida con React y Vite.
 
@@ -25,6 +25,6 @@ La página incluye categorías, una galería ilustrativa de ideas, navegación a
 
 ## Publicación en GitHub Pages
 
-El sitio usa Vite con la ruta base `/Crate-3D/`. El workflow de GitHub Actions en `.github/workflows/deploy.yml` compila y publica automáticamente al hacer push a `main`.
+El proyecto conserva la ruta de publicación existente `/Crate-3D/` para mantener sin cambios la dirección pública de GitHub Pages. El workflow de GitHub Actions en `.github/workflows/deploy.yml` compila y publica automáticamente al hacer push a `main`.
 
-En el repositorio, selecciona **Settings → Pages → Build and deployment → Source → GitHub Actions**. Después de una publicación correcta, el sitio estará disponible en `https://portaprint2026-stack.github.io/Crate-3D/`.
+La dirección pública es `https://portaprint2026-stack.github.io/Crate-3D/`.

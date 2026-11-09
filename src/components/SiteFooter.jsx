@@ -15,7 +15,7 @@ function SiteFooter() {
           <a href="#empresa">Nuestra idea</a>
           <a href="#servicios">Categorías</a>
           <a href="#proyectos">Inspiración</a>
-          <a href="#ventajas">Por qué Crate-3D</a>
+          <a href="#ventajas">Por qué PortaPrint</a>
         </div>
         <div className="footer-contact">
           <span className="footer-label">SIGAMOS EN CONTACTO</span>
@@ -29,7 +29,7 @@ function SiteFooter() {
       </div>
       <div className="footer-bottom">
         <div className="container footer-bottom-inner">
-          <span>CRATE-3D</span>
+          <span>PORTAPRINT</span>
           <span>OBJETOS CREATIVOS · IMPRESIÓN 3D</span>
           <a href="#inicio">VOLVER AL INICIO ↑</a>
         </div>

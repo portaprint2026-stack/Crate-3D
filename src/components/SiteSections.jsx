@@ -61,7 +61,7 @@ function HeroSection() {
         </div>
         <div className="hero-note"><span className="hero-note-spark">✳</span> Pequeñas ideas. Nuevas posibilidades.</div>
       </div>
-      <div className="hero-caption"><span className="caption-line" /> FORMAS COTIDIANAS · CRATE-3D</div>
+      <div className="hero-caption"><span className="caption-line" /> FORMAS COTIDIANAS · PORTAPRINT</div>
       <span className="hero-sticker" aria-hidden="true">OBJETOS<br />CON<br />IDEA <span>✳</span></span>
     </section>
   );
@@ -71,14 +71,14 @@ function AboutSection() {
   return (
     <section className="about-section section-pad container" id="empresa">
       <div className="about-label">
-        <p className="eyebrow"><span /> HOLA, SOMOS CRATE-3D</p>
+        <p className="eyebrow"><span /> HOLA, SOMOS PORTAPRINT</p>
         <span className="about-serial">DISEÑO COTIDIANO<br />HECHO DIFERENTE</span>
       </div>
       <div className="about-copy">
         <h2>Objetos sencillos para una vida llena de <span>ideas.</span></h2>
         <div className="about-bottom">
           <p>
-            Crate-3D crea objetos útiles, decorativos y personalizados mediante impresión 3D.
+            PortaPrint crea objetos útiles, decorativos y personalizados mediante impresión 3D.
             Nos inspira encontrar nuevas formas de resolver, organizar y disfrutar los pequeños
             momentos del día a día.
           </p>
@@ -112,7 +112,7 @@ function ServicesSection() {
             highlight="a tu vida."
             title="Pequeñas ideas que se suman"
           />
-          <span className="section-code">CRATE-3D / COLECCIONES</span>
+          <span className="section-code">PORTAPRINT / COLECCIONES</span>
         </div>
         <div className="services-grid">
           {categories.map((category, index) => (
@@ -214,7 +214,7 @@ function ProjectsSection() {
           highlight="ideas."
           title="Conoce algunas"
         />
-        <span className="section-code">CRATE-3D / IDEAS PARA EL DÍA A DÍA</span>
+        <span className="section-code">PORTAPRINT / IDEAS PARA EL DÍA A DÍA</span>
       </div>
       <div className="products-grid">
         {products.map((product) => <ProductCard key={product.type} product={product} />)}
@@ -231,7 +231,7 @@ function BenefitsSection() {
         <div className="benefits-intro">
           <SectionHeading
             description="Diseño creativo y fabricación 3D para dar forma a objetos que pueden encontrar su lugar en tu día."
-            eyebrow="POR QUÉ CRATE-3D"
+            eyebrow="POR QUÉ PORTAPRINT"
             highlight="diferente."
             title="Lo cotidiano, un poco"
           />
