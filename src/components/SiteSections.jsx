@@ -1,11 +1,9 @@
 import React from 'react';
-import { useRef, useState } from 'react';
+import { useState } from 'react';
 import Icon from './Icon.jsx';
-import TurnstileWidget from './TurnstileWidget.jsx';
-import { submitQuoteRequest } from '../lib/quote-requests.js';
+import { sendQuoteEmail } from '../lib/emailjs.js';
 
 const heroImage = `${import.meta.env.BASE_URL}home-products.svg`;
-const pendingRequestKey = 'portaprint:quote-request:idempotency-key';
 
 const categories = [
   { icon: 'layers', title: 'Organización para el hogar', description: 'Pequeños objetos que ayudan a que cada cosa encuentre su lugar.' },
@@ -38,15 +36,6 @@ function SectionHeading({ eyebrow, title, highlight, description, centered = fal
       {description && <p className="section-description">{description}</p>}
     </div>
   );
-}
-
-function clearPendingRequestKey() {
-  try {
-    sessionStorage.removeItem(pendingRequestKey);
-    return true;
-  } catch {
-    return false;
-  }
 }
 
 function HeroSection() {
@@ -268,10 +257,6 @@ function BenefitsSection() {
 function ContactQuoteSection() {
   const [status, setStatus] = useState('');
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const [requestCode, setRequestCode] = useState('');
-  const [turnstileToken, setTurnstileToken] = useState('');
-  const [turnstileResetKey, setTurnstileResetKey] = useState(0);
-  const pendingSubmission = useRef(null);
 
   async function handleSubmit(event) {
     event.preventDefault();
@@ -279,78 +264,31 @@ function ContactQuoteSection() {
 
     const form = event.currentTarget;
     const formData = new FormData(form);
-    const submission = {
-      name: formData.get('name'),
-      email: formData.get('email'),
-      phone: formData.get('phone') || null,
-      category: formData.get('projectType'),
-      description: formData.get('message'),
+    const name = formData.get('name').trim();
+    const category = form.querySelector('[name="projectType"]')
+      .selectedOptions[0].textContent.trim();
+    const templateParams = {
+      name,
+      email: formData.get('email').trim(),
+      phone: formData.get('phone').trim(),
+      project_type: category,
+      description: formData.get('message').trim(),
+      title: `Nueva solicitud de cotización: ${name}`,
     };
-
-    const serializedSubmission = JSON.stringify(submission);
-    let savedIdempotencyKey = null;
-    try {
-      savedIdempotencyKey = sessionStorage.getItem(pendingRequestKey);
-    } catch {
-      setStatus('No fue posible acceder al almacenamiento seguro de esta sesión.');
-      return;
-    }
-
-    if (!turnstileToken && !savedIdempotencyKey) {
-      setStatus('Completa la verificación de seguridad antes de enviar.');
-      return;
-    }
-
-    if (pendingSubmission.current?.submission !== serializedSubmission) {
-      let idempotencyKey;
-      try {
-        idempotencyKey = savedIdempotencyKey;
-        if (!idempotencyKey) {
-          idempotencyKey = crypto.randomUUID();
-          sessionStorage.setItem(pendingRequestKey, idempotencyKey);
-        }
-      } catch {
-        setStatus('No fue posible conservar el envío para reintentar de forma segura. Habilita el almacenamiento de sesión e inténtalo nuevamente.');
-        return;
-      }
-      pendingSubmission.current = {
-        idempotencyKey,
-        submission: serializedSubmission,
-      };
-    }
 
     setIsSubmitting(true);
     setStatus('');
-    setRequestCode('');
 
     try {
-      const result = await submitQuoteRequest({
-        ...submission,
-        idempotencyKey: pendingSubmission.current.idempotencyKey,
-        ...(turnstileToken ? { turnstileToken } : {}),
-      });
-
-      setRequestCode(result.requestCode);
-      setStatus(result.status === 'received'
-        ? 'Recibimos tu solicitud. Guarda este código de referencia.'
-        : 'Tu solicitud ya estaba registrada. Guarda este código de referencia.');
-      pendingSubmission.current = null;
-      if (!clearPendingRequestKey()) {
-        setStatus('Recibimos tu solicitud, pero no se pudo limpiar el reintento guardado en esta sesión.');
-      }
+      await sendQuoteEmail(templateParams);
+      setStatus('Recibimos tu solicitud. Gracias por compartir tu idea.');
       form.reset();
     } catch (error) {
-      if (error?.status === 409) {
-        pendingSubmission.current = null;
-        if (!clearPendingRequestKey()) {
-          setStatus('No se pudo renovar el reintento guardado. Habilita el almacenamiento de sesión antes de volver a enviar.');
-          return;
-        }
-      }
-      setStatus(error instanceof Error ? error.message : 'No pudimos enviar tu solicitud. Inténtalo de nuevo.');
+      setStatus(error?.message === 'EMAILJS_PUBLIC_KEY_MISSING'
+        ? 'El formulario aún no está configurado. Añade VITE_EMAILJS_PUBLIC_KEY para habilitar los envíos.'
+        : 'No pudimos enviar tu solicitud. Inténtalo de nuevo.');
     } finally {
       setIsSubmitting(false);
-      setTurnstileResetKey((current) => current + 1);
     }
   }
 
@@ -389,13 +327,11 @@ function ContactQuoteSection() {
           </select>
           <label htmlFor="quote-message">Un poco más sobre tu idea</label>
           <textarea id="quote-message" name="message" placeholder="¿Para qué lo necesitas? ¿Qué te gustaría que hiciera?" required rows="3" />
-          <TurnstileWidget onToken={setTurnstileToken} resetKey={turnstileResetKey} />
           <button className="button button-primary quote-submit" disabled={isSubmitting} type="submit">
             {isSubmitting ? 'Enviando…' : 'Compartir mi idea'} <Icon name="arrow" />
           </button>
           <p aria-live="polite" className={`form-status${status ? ' is-visible' : ''}`}>
-            {status || 'No necesitas crear una cuenta para solicitar una cotización.'}
-            {requestCode && <><br /><strong>Código de referencia: {requestCode}</strong></>}
+            {status || 'No necesitas crear una cuenta. Usaremos tus datos para responder tu solicitud.'}
           </p>
         </form>
       </div>

@@ -30,13 +30,9 @@ jobs:
         run: npm ci
       - name: Build site
         env:
-          VITE_SUPABASE_URL: ${{ vars.VITE_SUPABASE_URL }}
-          VITE_SUPABASE_PUBLISHABLE_KEY: ${{ vars.VITE_SUPABASE_PUBLISHABLE_KEY }}
-          VITE_TURNSTILE_SITE_KEY: ${{ vars.VITE_TURNSTILE_SITE_KEY }}
+          VITE_EMAILJS_PUBLIC_KEY: f1NCEgFvDodEY_Ptm
         run: |
-          test -n "$VITE_SUPABASE_URL"
-          test -n "$VITE_SUPABASE_PUBLISHABLE_KEY"
-          test -n "$VITE_TURNSTILE_SITE_KEY"
+          test -n "$VITE_EMAILJS_PUBLIC_KEY"
           npm run build
       - name: Configure GitHub Pages
         uses: actions/configure-pages@v5
